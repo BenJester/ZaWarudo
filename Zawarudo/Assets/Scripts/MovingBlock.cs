@@ -13,32 +13,38 @@ public class MovingBlock : MonoBehaviour {
 	
 	public Dir direction;
 	public float speed;
-
+	public Thing thing;
 	Rigidbody2D body;
 
 	void Start () {
+		thing = GetComponent<Thing> ();
 		body = GetComponent<Rigidbody2D> ();
 	}
 	
 	void Update () {
-		if (direction == Dir.left) {
-			body.velocity = new Vector2 (-speed, 0f);
-			body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-		} else if (direction == Dir.right) {
-			body.velocity = new Vector2 (speed, 0f);
-			body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+		if (thing.lerp > 0) {
+			if (direction == Dir.left) {
+				body.velocity = new Vector2 (-speed, 0f);
+				body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+			} else if (direction == Dir.right) {
+				body.velocity = new Vector2 (speed, 0f);
+				body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
 
-		} else if (direction == Dir.up) {
-			body.velocity = new Vector2 (0, speed);
-			body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			} else if (direction == Dir.up) {
+				body.velocity = new Vector2 (0, speed);
+				body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
-		} else if (direction == Dir.down) {
-			body.velocity = new Vector2 (0, -speed);
-			body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			} else if (direction == Dir.down) {
+				body.velocity = new Vector2 (0, -speed);
+				body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
-		} else if (direction == Dir.none) {
+			} else if (direction == Dir.none) {
+				body.velocity = Vector2.zero;
+			}
+		} else {
 			body.velocity = Vector2.zero;
 		}
+
 	}
 
 	void OnCollisionEnter2D (Collision2D collision)

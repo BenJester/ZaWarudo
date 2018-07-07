@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded8e0f1c406c44ee85ad48e7f53ffec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetIndex: 0
+  currentIndex: 1
+  switchDuration: 1
+  mask: {fileID: 0}
   currentWorld: 1
-  world1: {fileID: 0}
-  world2: {fileID: 0}
