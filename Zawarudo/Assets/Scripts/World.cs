@@ -11,6 +11,12 @@ public class World : MonoBehaviour {
 			return _instance; 
 		}
 	}
+	AudioSource audio;
+	public AudioClip switchSound;
+	public AudioClip lockSound;
+	public AudioClip unlockSound;
+	public int independentCount = 0;
+
 	public float targetIndex;
 	public float currentIndex;
 	public float switchDuration;
@@ -23,6 +29,7 @@ public class World : MonoBehaviour {
 	private GameObject world2;
 
 	void Start () {
+		audio = GetComponent<AudioSource> ();
 		if (World._instance == null) {
 			World._instance = this;
 		} else {
@@ -49,11 +56,21 @@ public class World : MonoBehaviour {
 
 	void LeftClick() {
 		RaycastHit2D hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector3.forward, Mathf.Infinity);
+
 		if (hit && hit.collider.gameObject.GetComponent<Thing>() != null && hit.collider.gameObject.GetComponent<Thing>().displayed){
 			var thing = hit.collider.gameObject.GetComponent<Thing> ();
-			var sprite = hit.collider.gameObject.GetComponent<SpriteRenderer> ();
-			thing.independent = !thing.independent;
+			if (thing.independent) {
+				audio.PlayOneShot (unlockSound);
 
+				independentCount --;
+			} else if (independentCount < 2){
+				audio.PlayOneShot (lockSound);
+
+				independentCount ++;
+			}  else if (independentCount >= 2) {
+				return;
+			}
+			thing.independent = !thing.independent;
 
 			//RefreshWorld ();
 		}
@@ -65,6 +82,8 @@ public class World : MonoBehaviour {
 		} else if (currentWorld == 2) {
 			targetIndex = 1;
 		}
+		audio.PlayOneShot (switchSound);
+
 		SwitchWorld ();
 	}
 

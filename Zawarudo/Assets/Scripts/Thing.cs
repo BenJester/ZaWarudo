@@ -10,13 +10,29 @@ public class Thing : MonoBehaviour {
 
 	public Sprite unmarked;
 	public Sprite marked;
+	public GameObject whiteMark;
+	public GameObject blackMark;
+	public GameObject mark;
 	public SpriteRenderer sprite;
 	public float originalX;
 
 	void Start() {
+		whiteMark = GameObject.Find ("White Mark");
+		blackMark = GameObject.Find ("Black Mark");
 		sprite = GetComponent<SpriteRenderer> ();
-		if (GetComponent<BoxCollider2D> () != null)
-			originalX = GetComponent<BoxCollider2D> ().size.x;
+		if (transform.parent.name == "World1") {
+			mark = Instantiate (whiteMark);
+			mark.transform.SetParent (transform);
+			mark.transform.localPosition = Vector3.back;
+		} else {
+			mark = Instantiate (blackMark);
+			mark.transform.SetParent (transform);
+			mark.transform.localPosition = Vector3.back;
+		}
+		if (GetComponent<BoxCollider2D> () != null) {
+			originalX = GetComponent<SpriteRenderer> ().size.x;
+			GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().size;
+		}
 	}
 
 	void Update() {
@@ -28,11 +44,12 @@ public class Thing : MonoBehaviour {
 
 		if (independent) {
 			sprite.maskInteraction = SpriteMaskInteraction.None;
-			sprite.sprite = marked;
+			mark.SetActive (true);
 		}
 		else {
 			sprite.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-			sprite.sprite = unmarked;
+			mark.SetActive (false);
+
 		}
 	}
 }

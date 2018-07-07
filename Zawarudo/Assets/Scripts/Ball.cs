@@ -10,8 +10,10 @@ public class Ball : MonoBehaviour {
 	SpriteRenderer bodySprite;
 	public float moveSpeed;
 	private ContactFilter2D contactfilter;
-
+	AudioSource audio;
+	public AudioClip jumpSound;
 	void Start () {
+		audio = GetComponent<AudioSource> ();
 		bodySprite = GetComponent<SpriteRenderer> ();
 		body2d = GetComponent<Rigidbody2D> ();
 		contactfilter.SetLayerMask (groundLayer);
@@ -24,6 +26,7 @@ public class Ball : MonoBehaviour {
 			body2d.velocity = new Vector2(body2d.velocity.x, 22f);
 			//audioSource.PlayOneShot (jumpSound);
 			//StartCoroutine (jumpCoolDown (0.15f));
+			audio.PlayOneShot(jumpSound);
 		}
 
 		if (Input.GetKeyDown ("d")) {

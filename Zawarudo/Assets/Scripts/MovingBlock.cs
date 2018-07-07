@@ -14,6 +14,7 @@ public class MovingBlock : MonoBehaviour {
 	public Dir direction;
 	public float speed;
 	public Thing thing;
+	public bool move;
 	Rigidbody2D body;
 	Vector3 lastPos;
 
@@ -25,6 +26,19 @@ public class MovingBlock : MonoBehaviour {
 	void Update () {
 		lastPos = transform.position;
 
+		if (move) {
+			HandleVelocity ();
+		} else {
+			body.velocity = Vector2.zero;
+		}
+		move = true;
+
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) ||Input.GetKeyDown(KeyCode.W)) {
+			move = true;
+		}
+	}
+
+	void HandleVelocity () {
 		if ((thing.lerp > 0 && transform.parent.name == "World1") || (thing.lerp < 1 && transform.parent.name == "World2") || thing.independent) {
 			if (direction == Dir.left) {
 				body.velocity = new Vector2 (-speed, 0f);
@@ -48,7 +62,6 @@ public class MovingBlock : MonoBehaviour {
 			body.velocity = Vector2.zero;
 		}
 	}
-
 	void OnCollisionEnter2D (Collision2D collision)
 	{
 		Debug.Log ("las " + lastPos);

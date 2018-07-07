@@ -151,52 +151,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 50434936418152194, guid: bb1af50bcc9674f7294d9d0cd6440d62,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50434936418152194, guid: bb1af50bcc9674f7294d9d0cd6440d62,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4690443404827898, guid: bb1af50bcc9674f7294d9d0cd6440d62, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4690443404827898, guid: bb1af50bcc9674f7294d9d0cd6440d62, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50434936418152194, guid: bb1af50bcc9674f7294d9d0cd6440d62,
-        type: 2}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50434936418152194, guid: bb1af50bcc9674f7294d9d0cd6440d62,
-        type: 2}
-      propertyPath: m_Mass
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb1af50bcc9674f7294d9d0cd6440d62, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &483842830 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1600984531218972, guid: bb1af50bcc9674f7294d9d0cd6440d62,
-    type: 2}
-  m_PrefabInternal: {fileID: 45139360}
---- !u!210 &483842835
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 483842830}
-  m_Enabled: 1
-  m_SortingLayerID: -809353623
-  m_SortingLayer: 3
-  m_SortingOrder: 0
 --- !u!1001 &615415201
 Prefab:
   m_ObjectHideFlags: 0
