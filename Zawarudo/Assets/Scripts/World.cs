@@ -31,6 +31,8 @@ public class World : MonoBehaviour {
 
 		world1 = GameObject.Find ("World1");
 		world2 = GameObject.Find ("World2");
+		currentWorld = 1;
+		/*
 		if (currentWorld == 1){
 			HideWorld (world2);
 			ShowWorld (world1);
@@ -39,37 +41,40 @@ public class World : MonoBehaviour {
 			HideWorld (world1);
 			ShowWorld (world2);
 		}
+		*/
+		RightClick ();
+		RightClick ();
+
+	}
+
+	void LeftClick() {
+		RaycastHit2D hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector3.forward, Mathf.Infinity);
+		if (hit && hit.collider.gameObject.GetComponent<Thing>() != null && hit.collider.gameObject.GetComponent<Thing>().displayed){
+			var thing = hit.collider.gameObject.GetComponent<Thing> ();
+			var sprite = hit.collider.gameObject.GetComponent<SpriteRenderer> ();
+			thing.independent = !thing.independent;
+
+
+			//RefreshWorld ();
+		}
+	}
+
+	void RightClick () {
+		if (currentWorld == 1) {
+			targetIndex = 2;
+		} else if (currentWorld == 2) {
+			targetIndex = 1;
+		}
+		SwitchWorld ();
 	}
 
 	void Update () {
 		if (Input.GetMouseButtonDown(0)){
-
-			RaycastHit2D hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
-			if (hit && hit.collider.gameObject.GetComponent<Thing>() != null && hit.collider.gameObject.GetComponent<Thing>().displayed){
-				var thing = hit.collider.gameObject.GetComponent<Thing> ();
-				var sprite = hit.collider.gameObject.GetComponent<SpriteRenderer> ();
-				thing.independent = !thing.independent;
-
-				if (thing.independent) {
-					sprite.maskInteraction = SpriteMaskInteraction.None;
-					sprite.sprite = thing.marked;
-				}
-				else {
-					sprite.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-					sprite.sprite = thing.unmarked;
-				}
-
-				//RefreshWorld ();
-			}
+			LeftClick ();
 		}
 
 		if (Input.GetMouseButtonDown (1)) {
-			if (currentWorld == 1) {
-				targetIndex = 2;
-			} else if (currentWorld == 2) {
-				targetIndex = 1;
-			}
-			SwitchWorld ();
+			RightClick ();
 		}
 
 		if (currentIndex < targetIndex) {
@@ -87,8 +92,21 @@ public class World : MonoBehaviour {
 		HandleCollider ();
 
 		if (Input.GetKeyDown(KeyCode.R)) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+			StartCoroutine (Restart ());
 		}
+	}
+
+	public void R() {
+		StartCoroutine (Restart ());
+	}
+
+	public IEnumerator Restart() {
+		if (currentWorld == 1) {
+			RightClick ();
+			yield return new WaitForSeconds (switchDuration);
+		}
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+
 	}
 
 	void HandleCollider() {
@@ -130,15 +148,6 @@ public class World : MonoBehaviour {
 				}
 			}
 			}
-	}
-
-	float CalculateSize (GameObject g) {
-		// return 0 to 1 based on currentIndex, pos and size
-
-		float left = Camera.main.WorldToViewportPoint(g.transform.position - new Vector3(g.GetComponent<SpriteRenderer>().size.x, g.GetComponent<SpriteRenderer>().size.y,0f)).x;
-		float right = Camera.main.WorldToViewportPoint(g.transform.position + new Vector3(g.GetComponent<SpriteRenderer>().size.x, g.GetComponent<SpriteRenderer>().size.y, 0f)).x;
-		//Debug.Log (Mathf.Clamp01 ((currentIndex -1f - left) / (right - left)));
-		return Mathf.Clamp01 ((currentIndex - 1f - left) / (right - left));
 	}
 
 	void RefreshWorld() {
