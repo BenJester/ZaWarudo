@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 210032416894245576}
   - component: {fileID: 114708538351331010}
   - component: {fileID: 82522747463665042}
+  - component: {fileID: 95832679757579974}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -68,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1600984531218972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.9, y: 27.4, z: -2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -22.3, y: 16.3, z: -2}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 1}
   m_Children:
   - {fileID: 4036605776062016}
   m_Father: {fileID: 0}
@@ -94,7 +95,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &58691939055817174
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -109,7 +110,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 1.2
 --- !u!82 &82522747463665042
 AudioSource:
   m_ObjectHideFlags: 1
@@ -190,6 +191,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &95832679757579974
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1600984531218972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5a6b02bb7ef04ed0ade156a52a1a439, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108746200352071712
 Light:
   m_ObjectHideFlags: 1
@@ -242,6 +260,7 @@ MonoBehaviour:
     m_Bits: 256
   faceRight: 0
   moveSpeed: 12
+  jumpSound: {fileID: 8300000, guid: 9bc108bdf18ab46c2b09e87cc8bfbd3a, type: 3}
 --- !u!210 &210032416894245576
 SortingGroup:
   m_ObjectHideFlags: 1
@@ -286,12 +305,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4e60999a291994ea2807df49e3db8d29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7838b5081d02424a8156e25c0e1d6ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_DrawMode: 1
+  m_Size: {x: 2.5, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

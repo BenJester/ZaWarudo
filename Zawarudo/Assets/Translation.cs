@@ -8,8 +8,8 @@ public class Translation : MonoBehaviour {
 	public string nextLevel;
 	// Update is called once per frame
 	void Update () {
-		transform.position += Vector3.right * 0.01f;
-		if (Input.GetMouseButtonDown (1))
+		transform.position += Vector3.right * 0.02f;
+		if (Input.GetMouseButtonDown (1) && nextLevel != null)
 			StartCoroutine (LoadAsyncScene());
 	}
 		
@@ -17,12 +17,7 @@ public class Translation : MonoBehaviour {
 	{
 		if(nextLevel == "")
 		{
-			AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-			//Wait until the last operation fully loads to return anything
-			while (!asyncLoad.isDone)
-			{
-				yield return null;
-			}
+			yield return null;
 		}
 		else
 		{

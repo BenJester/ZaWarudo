@@ -53,7 +53,15 @@ public class World : MonoBehaviour {
 		RightClick ();
 
 	}
+	public IEnumerator PlayScaleAnimation(Thing thing) {
+		if (thing.gameObject.GetComponent<OneTimeTranslation> () != null) {
+			thing.gameObject.GetComponent<OneTimeTranslation> ().continuing = true;
+			yield return new WaitForSeconds (0.26f);
+			thing.gameObject.GetComponent<OneTimeTranslation> ().reinitialize ();
+		}
 
+		yield return null;
+	}
 	void LeftClick() {
 		RaycastHit2D hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector3.forward, Mathf.Infinity);
 
@@ -61,11 +69,12 @@ public class World : MonoBehaviour {
 			var thing = hit.collider.gameObject.GetComponent<Thing> ();
 			if (thing.independent) {
 				audio.PlayOneShot (unlockSound);
-
 				independentCount --;
+				StartCoroutine (PlayScaleAnimation (thing));
+
 			} else if (independentCount < 2){
 				audio.PlayOneShot (lockSound);
-
+				StartCoroutine (PlayScaleAnimation (thing));
 				independentCount ++;
 			}  else if (independentCount >= 2) {
 				return;
@@ -76,7 +85,7 @@ public class World : MonoBehaviour {
 		}
 	}
 
-	void RightClick () {
+	public void RightClick () {
 		if (currentWorld == 1) {
 			targetIndex = 2;
 		} else if (currentWorld == 2) {

@@ -29,6 +29,9 @@ public class Thing : MonoBehaviour {
 			mark.transform.SetParent (transform);
 			mark.transform.localPosition = Vector3.back;
 		}
+		if (tag == "Moving Wall" || GetComponent<SpriteRenderer>().size.y < 1.5f) {
+			mark.GetComponent<SpriteRenderer> ().size = mark.GetComponent<SpriteRenderer> ().size * 0.47f;
+		}
 		if (GetComponent<BoxCollider2D> () != null) {
 			originalX = GetComponent<SpriteRenderer> ().size.x;
 			GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().size;
@@ -36,8 +39,8 @@ public class Thing : MonoBehaviour {
 	}
 
 	void Update() {
-		float left = Camera.main.WorldToViewportPoint(transform.position - new Vector3(GetComponent<SpriteRenderer>().size.x, GetComponent<SpriteRenderer>().size.y,0f)).x;
-		float right = Camera.main.WorldToViewportPoint(transform.position + new Vector3(GetComponent<SpriteRenderer>().size.x, GetComponent<SpriteRenderer>().size.y, 0f)).x;
+		float left = Camera.main.WorldToViewportPoint(transform.position - new Vector3(GetComponent<SpriteRenderer>().size.x /2f, GetComponent<SpriteRenderer>().size.y,0f)).x;
+		float right = Camera.main.WorldToViewportPoint(transform.position + new Vector3(GetComponent<SpriteRenderer>().size.x /2f, GetComponent<SpriteRenderer>().size.y, 0f)).x;
 		//Debug.Log (Mathf.Clamp01 ((currentIndex -1f - left) / (right - left)));
 		lerp = Mathf.Clamp01 ((World.Instance.currentIndex - 1f - left) / (right - left));
 

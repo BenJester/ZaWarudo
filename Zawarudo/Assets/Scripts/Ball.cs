@@ -9,18 +9,28 @@ public class Ball : MonoBehaviour {
 	public bool faceRight;
 	SpriteRenderer bodySprite;
 	public float moveSpeed;
+	float acc = 1f;
 	private ContactFilter2D contactfilter;
 	AudioSource audio;
 	public AudioClip jumpSound;
+	bool wasGrounded;
+	Animator animator;
+	bool dead;
+
 	void Start () {
+		animator = GetComponent<Animator> ();
 		audio = GetComponent<AudioSource> ();
 		bodySprite = GetComponent<SpriteRenderer> ();
 		body2d = GetComponent<Rigidbody2D> ();
 		contactfilter.SetLayerMask (groundLayer);
-
+		acc = 1f;
 	}
 
 	void Update () {
+		if (transform.position.y < -25f && !dead) {
+			StartCoroutine(World.Instance.Restart ());
+			dead = true;
+		}
 		if (Input.GetKeyDown ("w") && IsGrounded ()) {
 			//body2d.AddForce(new Vector2(0, 4900), ForceMode2D.Impulse);
 			body2d.velocity = new Vector2(body2d.velocity.x, 22f);
@@ -31,13 +41,13 @@ public class Ball : MonoBehaviour {
 
 		if (Input.GetKeyDown ("d")) {
 			faceRight = true;
-			bodySprite.flipX = false;
+			//bodySprite.flipX = false;
 			accelerate ();
 		}
 
 		if (Input.GetKeyDown ("a")) {
 			faceRight = false;
-			bodySprite.flipX = true;
+			//bodySprite.flipX = true;
 			accelerate ();
 
 		}
@@ -45,7 +55,7 @@ public class Ball : MonoBehaviour {
 		if (Input.GetKeyUp ("d")) {
 			if (Input.GetKey ("a")) {
 				faceRight = false;
-				bodySprite.flipX = true;
+				//bodySprite.flipX = true;
 				accelerate ();
 			} else {
 				decelerate ();
@@ -55,7 +65,7 @@ public class Ball : MonoBehaviour {
 		if (Input.GetKeyUp ("a")) {
 			if (Input.GetKey ("d")) {
 				faceRight = true;
-				bodySprite.flipX = false;
+				//bodySprite.flipX = false;
 				accelerate ();
 				//body2d.velocity = new Vector2 (moveSpeed, body2d.velocity.y);
 			} else {
@@ -65,17 +75,18 @@ public class Ball : MonoBehaviour {
 
 		if (Input.GetKey ("a") && !Input.GetKey ("d")) {
 			faceRight = false;
-			bodySprite.flipX = true;
+			//bodySprite.flipX = true;
 			accelerate ();
 			//body2d.velocity = new Vector2 (-moveSpeed, body2d.velocity.y);
 		}
 
 		if (Input.GetKey ("d") && !Input.GetKey ("a")) {
 			faceRight = true;
-			bodySprite.flipX = false;
+			//bodySprite.flipX = false;
 			accelerate ();
 			//body2d.velocity = new Vector2 (moveSpeed, body2d.velocity.y);
 		}
+		wasGrounded = IsGrounded ();
 
 	}
 	void accelerate() {
@@ -83,12 +94,12 @@ public class Ball : MonoBehaviour {
 		{
 			if (faceRight)
 			{
-				body2d.velocity = new Vector2(moveSpeed, body2d.velocity.y);
-				//body2d.velocity = new Vector2 (body2d.velocity.x + acc > moveSpeed ? moveSpeed : body2d.velocity.x + acc, body2d.velocity.y);
+				//body2d.velocity = new Vector2(moveSpeed, body2d.velocity.y);
+				body2d.velocity = new Vector2 (body2d.velocity.x + acc > moveSpeed ? moveSpeed : body2d.velocity.x + acc, body2d.velocity.y);
 			}
 			else {
-				body2d.velocity = new Vector2(-moveSpeed, body2d.velocity.y);
-				//body2d.velocity = new Vector2 (body2d.velocity.x - acc < -moveSpeed ? -moveSpeed : body2d.velocity.x - acc, body2d.velocity.y);
+				//body2d.velocity = new Vector2(-moveSpeed, body2d.velocity.y);
+				body2d.velocity = new Vector2 (body2d.velocity.x - acc < -moveSpeed ? -moveSpeed : body2d.velocity.x - acc, body2d.velocity.y);
 			}
 		}
 

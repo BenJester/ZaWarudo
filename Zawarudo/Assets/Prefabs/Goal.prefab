@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212227422643867118}
   - component: {fileID: 61002609868260620}
   - component: {fileID: 114342371378236782}
+  - component: {fileID: 210233479782903134}
+  - component: {fileID: 114976670220580802}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -36,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1323134568851500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7325177, y: -4.7662964, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 26.1, y: -5.7, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,14 +60,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.5, y: 0.93}
+    oldSize: {x: 1.16, y: 1.16}
     newSize: {x: 3.5, y: 0.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 0.93}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &114342371378236782
 MonoBehaviour:
@@ -78,6 +80,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea47c5d453bbd4c429f2624cf433fb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: Start
+  won: 0
+--- !u!114 &114976670220580802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323134568851500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a789979b671194938906a496d6a20289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linear: 0
+  keyFrameNum: 4
+  posArr:
+  - {x: 0, y: 0.2, z: 0}
+  - {x: 0, y: -0.4, z: 0}
+  - {x: 0, y: 0.2, z: 0}
+  - {x: 0, y: 0, z: 0}
+  scaleArr:
+  - {x: 2, y: 2, z: 1}
+  - {x: 2, y: 2, z: 1}
+  - {x: 2, y: 2, z: 1}
+  - {x: 2, y: 2, z: 1}
+  keyFrameTimeArr:
+  - 2
+  - 4
+  - 2
+  - 0.02
+--- !u!210 &210233479782903134
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323134568851500}
+  m_Enabled: 1
+  m_SortingLayerID: -809353623
+  m_SortingLayer: 3
+  m_SortingOrder: 0
 --- !u!212 &212227422643867118
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -112,8 +154,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6310c9e9d3c494165a6b1c172dce1c89, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fa7cf6ee2b6b64b2393d4bbc637b86e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.834}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

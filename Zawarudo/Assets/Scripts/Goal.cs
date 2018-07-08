@@ -10,7 +10,6 @@ public class Goal : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Ball" && !won) {
-			Debug.Log ("Goal");
 			StartCoroutine(LoadAsyncScene());
 		}
 	}
@@ -28,6 +27,7 @@ public class Goal : MonoBehaviour {
 		}
 		else
 		{
+			World.Instance.RightClick ();
 			AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextLevel);
 			//Wait until the last operation fully loads to return anything
 			while (!asyncLoad.isDone)

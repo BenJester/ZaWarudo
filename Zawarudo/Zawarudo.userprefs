@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/OneTimeTranslation.cs">
+    <Files>
+      <File FileName="Assets/Scripts/World.cs" Line="85" Column="33" />
+      <File FileName="Assets/Scripts/MovingBlock.cs" Line="35" Column="3" />
+      <File FileName="Assets/Scripts/Thing.cs" Line="21" Column="46" />
+      <File FileName="Assets/Translation.cs" Line="11" Column="45" />
+      <File FileName="Assets/Scripts/Goal.cs" Line="39" Column="3" />
+      <File FileName="Assets/Music.cs" Line="7" Column="1" />
+      <File FileName="Assets/Scripts/Ball.cs" Line="12" Column="17" />
+      <File FileName="Assets/Scripts/OneTimeTranslation.cs" Line="113" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

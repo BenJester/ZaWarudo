@@ -55,8 +55,10 @@
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\Goal.cs" />
      <Compile Include="Assets\Scripts\MovingBlock.cs" />
+     <Compile Include="Assets\Scripts\OneTimeTranslation.cs" />
      <Compile Include="Assets\Scripts\Polygon.cs" />
      <Compile Include="Assets\Scripts\Thing.cs" />
+     <Compile Include="Assets\Scripts\TranslationAnimation.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />
      <Compile Include="Assets\Scripts\World.cs" />
      <Compile Include="Assets\Translation.cs" />
